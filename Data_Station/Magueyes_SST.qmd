@@ -1,0 +1,138 @@
+---
+title: "MGIP4_Data_Analysis"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+In this Quarto Document there will be the code of the Analysis of Isla Magueyes MGIP4 Station.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+
+#Read each files without for loops becauase all files are different
+
+df_2005 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2005") |> 
+  select(degC_1 = WTMP,`#yr` = YYYY,mo = MM,dy = DD) |> 
+  mutate(date = make_date(`#yr`,mo,dy))
+  
+
+df_2006 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2006") |> 
+  select(degC_1 = WTMP,`#yr` = YYYY,mo = MM,dy = DD) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2007 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2007", skip = 1) |>select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2008 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2008", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2009 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2009", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2010 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2010", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2011 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2011", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy))
+
+df_2012 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2012", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2013 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2013", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2014 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2014",skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2015 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2015", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2016 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2016", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2017 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2017", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2018 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2018", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(dy = as.character(dy)) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2019 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2019", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2020 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2020", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2021 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2021", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2022 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2022", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2023 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2023", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+df_2024 = read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2024.txt", skip = 1) |> 
+  select(`#yr`,mo,dy, degC_1) |> 
+  mutate(date = make_date(`#yr`,mo,dy)) 
+
+
+df = bind_rows(id = NULL, df_2005, df_2006,df_2007, df_2008, df_2009, df_2010, df_2011, df_2012, df_2013, df_2014, df_2015, df_2016, df_2017, df_2018, df_2019, df_2020,df_2021,df_2022, df_2023, df_2024)
+
+df1 = df |> 
+  select(date,degC_1)
+
+df1 |> 
+  filter(degC_1 != 999 & degC_1 < 200) |> 
+  ggplot(aes(x = as.POSIXct(date), y = degC_1))+
+  geom_point(alpha = 0.1, color = "lightblue")+
+  theme_bw()+
+  geom_hline(yintercept = 32, color = "red")+
+  geom_hline(yintercept = 30, color = "yellow3")+
+  labs(y = "Sea Surface Temperature", x = "Date", title = "Sea Surface Temperature at MGIP4 Station",caption= "This dataset had > 1.4 million data points\n Source: www.ndbc.noaa.gov")
+
+
+df_model = df |> 
+  filter(Sea_Temp != 999 & Sea_Temp < 200)
+
+summary(lm(Sea_Temp~date, data = df_model))
+
+
+df |> 
+  filter(degC_1 < 100) |> 
+  group_by(`#yr`) |> 
+  summarise(Mean = mean(degC_1), SD = sd(degC_1)) |>
+  ggplot(aes(x =`#yr` , y = Mean))+
+  geom_point(alpha = 0.7, size = 2)+
+  geom_line(color = "lightblue3")+
+  geom_hline(yintercept = 28.43702, linetype = 2, color = "blue")+
+  geom_errorbar(aes(ymin = Mean-SD, ymax = Mean+SD), alpha=0.3)+
+  theme_classic()+
+  labs(y = "Mean SST ± sd", x = "Year", title = "SST at MGIP4 Station", caption= "This dataset had > 1.4 million data points\n Source: www.ndbc.noaa.gov", subtitle = "Blue dashed line = All year mean SST")
+
+
+
+df2 = df |> 
+  filter(degC_1 < 100)
+```
