@@ -135,4 +135,26 @@ df |>
 
 df2 = df |> 
   filter(degC_1 < 100)
+
+
+df |> 
+  filter(degC_1 < 200) |> 
+  filter(mo == "02" | mo == "01") |> 
+  select(degC_1, `#yr`, mo) |> 
+  group_by(`#yr`,mo) |> 
+  summarise(Mean = mean(degC_1), SD = sd(degC_1)) |> 
+  mutate(Month = if_else(mo == "01", "January", "February")) |> 
+  ggplot(aes(x =`#yr`, y = Mean))+
+  geom_errorbar(aes(ymin = Mean-SD, ymax = Mean+SD), size = 0.1, alpha = 0.7)+
+  geom_point()+
+  geom_line(alpha = 0.3)+
+  facet_wrap(~factor(Month, c("January", "February")))+
+  geom_smooth(se = F, alpha = 0.3, color = "lightblue")+
+  theme_classic()+
+  scale_y_continuous(breaks = c(25,26,27,28,29,30))+
+  labs(y = "Mean SST ± sd", x = "Year", title = "SST at MGIP4 Station", caption= "This dataset had > 214,00 data points\n Source: www.ndbc.noaa.gov")
+  
+  
+
+         
 ```
