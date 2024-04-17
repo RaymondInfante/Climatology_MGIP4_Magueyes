@@ -119,7 +119,7 @@ df_model = df |>
 summary(lm(Sea_Temp~date, data = df_model))
 
 
-df |> 
+#df |> 
   filter(degC_1 < 100) |> 
   group_by(`#yr`) |> 
   summarise(Mean = mean(degC_1), SD = sd(degC_1)) |>
@@ -137,7 +137,7 @@ df2 = df |>
   filter(degC_1 < 100)
 
 
-df |> 
+#df |> 
   filter(degC_1 < 200) |> 
   filter(mo == "02" | mo == "01") |> 
   select(degC_1, `#yr`, mo) |> 
@@ -155,6 +155,10 @@ df |>
   labs(y = "Mean SST ± sd", x = "Year", title = "SST at MGIP4 Station", caption= "This dataset had > 214,00 data points\n Source: www.ndbc.noaa.gov")
   
   
-
+read_table("/Users/raymondinfante/Documents/Coding/R_code/Climatology_MGIP4_Magueyes/Data_Station/2023", skip = 1) |> 
+  filter(degT != "999") |> 
+  ggplot(aes(x = degT)) +
+  geom_density(fill = "lightblue", alpha = 0.8)+ 
+  theme_classic()
          
 ```
